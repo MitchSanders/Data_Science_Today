@@ -1,4 +1,4 @@
-Clustering is dividing into four major methods. 
+Newest changes made to - Clustering is dividing into four major methods. 
 Prototype based methods such as K-Means and the multiple variations of centroid based spherical-shaped clustering, such as K-Mode, K-Means++, and Bisecting K-Means.
 Hierarchial clustering such as agglomerative where you do not need to pick a number of centroids and visualization can be in dendrograms.
 DBSCAN which is useful for non-globularized data and outliers using density of data.
