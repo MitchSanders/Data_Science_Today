@@ -13,7 +13,7 @@ Clustering is dividing into four major methods.
 
 Figure 1 shows k-means with a 2-dimensional feature vector \(each point has two dimensions, an x and a y\). In your applications, will probably be working with data that has a lot of features. In fact each data-point may be hundreds of dimensions. We can visualize clusters in up to 3 dimensions \(see figure 3\) but beyond that you have to rely on a more mathematical understanding.
 
-![](/assets/import.png)
+![](/assets/two_centroid_clustering.png)
 
 ![](http://stanford.edu/~cpiech/cs221/img/kmeans3d.png)
 
