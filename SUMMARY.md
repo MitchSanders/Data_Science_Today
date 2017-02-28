@@ -2,5 +2,5 @@
 
 * [Introduction](README.md)
 * [First Chapter](chapter1.md)
-* [K Means](k-means.md)
+* [A K-Means Script](a-k-means-script.md)
 
