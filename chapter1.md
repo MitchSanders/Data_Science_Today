@@ -16,7 +16,7 @@ It is NOT predictive nor is it what’s normally termed as Classification where 
 
 ##### 
 
-How is Clustering used?
+##### How is Clustering used?
 
 Clustering is useful for data that we cannot classify or identify. Perhaps no existing labels exist for attributes. Data useful for Clustering is usually not totally unstructured. Generally attributes are consistent of type with each attribute whether numerical, ordinal or nominal. Objects themselves should represent an event or dated grouping of data as usually depicted two-dimensional in rows, whereas the attributes would be the columns. An example might be a list of customers where each row is a unique customer and columns are attributes of each customer. Perhaps address, phone number, geography, purchases, demographics of income, status, sex, etc. What would not be known is how each of these customers group together. Clustering could be applied to find similar groups of customers for segmentation purposes to possibly target with specific products.
 
@@ -26,7 +26,7 @@ Clustering also can be beneficial as a pre-processing technique to prepare data 
 
 ##### 
 
-Problems that can inhibit successful clustering
+##### Problems that can inhibit successful clustering
 
 Certain techniques require an apriori knowledge of number clusters naturally with the data. Levels of clusters and deciding what best captures the intelligence needed can sometimes be a problem. Neither one cluster nor a cluster for every single data object is very valuable. Some middle ground is needed. For example, of a hundred customer it may be beneficial to select 2, 3, 4, … or even 10 clusters. Obviously 100 clusters reveals no useful abstraction, nor does grouping 100 customers into a single or maybe even only 2 clusters may be helpful. This discernment is left to the data scientist to interpret and decide upon.
 
