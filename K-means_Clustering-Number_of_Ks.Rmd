@@ -1,0 +1,151 @@
+---
+title: 'K-Means clustering: How Many K''s?'
+author: "Mitch Sanders"
+date: "3/16/2017"
+output:
+  html_notebook: default
+  html_document: default
+---
+
+Get Ready - Build Some Random X and Y Data to Cluster
+========================================================
+
+- Clear the memory - (just a good habit... clear out any cache values lying around)
+- Set a seed for reproducibility (any number will do)
+- Generate a random list of numbers centered around zero with a standard deviation of one
+
+```{r}
+rm(list=ls()); # clears all memory objects
+set.seed(2) # set seed
+x <- rnorm(100) # vector of random normalized data
+```
+  
+  
+Let's visualize the data quickly to see if we got what we wanted
+```{r}
+plot(x, type="h", col="blue")
+```
+##Let's Make a 2 Column Matrix and Offset Some
+
+***Split data***  
+Let's split that our existing x data into 2 columns so we have have X's and Y's. We'll use these for a 2-dimensional scattor plot which we'll then try to find natural groups or clusterings based on the distances they are from each other.  
+
+***A little more data manipulation - Offsetting***  
+1. Offsetting some of the data in the matrix  
+2. This is to create a varied spread on the data point.  Adjusting the +3 and -4 experimentally will show variations on the x and y plotting
+
+```{r}
+x <- matrix(x, ncol=2) # create a matrix from the vector with two columns
+colnames(x) <- c("x","Y") # giving names to the two columns
+x[1:25,1] <- x[1:25,1] +3 #offsetting
+x[1:25,2] <- x[1:25,2] -4 #offsetting
+```
+
+
+## Looking at the Data 
+
+Let's check and see what our matrix numbers look like. This matrix is in the "x" object. We'll just look at the first 10 rows, but want to see both columns 1 and 2 for sure.
+```{r}
+x[1:10, 1:2] # looking a just the top 10 rows, both columns
+```
+
+
+## Plot the Data - Scatterplot, 2 variables
+
+Set seed again, and plot the existing data on X axis and Y axis 
+
+Also setting up some simple plotting indenting 
+
+```{r}
+set.seed(4)
+
+par(oma=c(2,2,2,2)) # plot spacing parameters set globally for now
+
+plot(x, xlab="X axis", ylab="Y axis", pch=20, cex=2)
+title("Data - How Many Clusters?", line = -2)
+```
+
+:  
+
+GO! We're Ready to Cluster
+=======================================================
+## Running K-Means Algorithm
+* Set a starting seed (remember - we want this reproducible!)
+* Pass our matrix object into the K-means function as a parameter "kmeans(x)"
+* Set kmeans parameter cluster number - Pick a number based on best guess or subject matter experts knowledge - (we'll start with 5)
+* Set kmeans parameter number of random starts - (This algorithm randomly places starting points for each cluster. This is the number of times it tries this to get to convergence. We'll try 20)
+* Pass results of this whole process into another variable
+
+```{r}
+set.seed(4)
+km.output <- kmeans(x,5,nstart=20); 
+```
+
+
+## Plot the x matrix object again and color code it by the k-means clusters
+We'll also set some other plot parameters like character type, size, give it a title and space the title one line.
+```{r}
+plot(x, col=(km.output$cluster+1), xlab="X", ylab="Y", pch=20, cex=2)
+title("K = 5", line = -2)
+```
+
+##Now we've ran a machine learning algorithm to find 5 clusters in a 2 dimensional dataset  
+ * Is 5 clusters the best fit?  
+ * Let's check some other clustering numbers and visualize what we get.  
+ * What would 4 clusters look like?  
+ * Same code, change the k parameter.  
+
+```{r}
+set.seed(4)
+km.output <- kmeans(x,4,nstart=20); 
+plot(x, col=(km.output$cluster+1), xlab="X", ylab="Y", pch=20, cex=2)
+title("K = 4", line = -2)
+```
+hmmmm..... don't think I would have seen that clustering of 4 either with just my own eyes. Glad to let the machine learn and do it for me.  
+let's try 3 clusters...  
+
+```{r}
+set.seed(4)
+km.output <- kmeans(x,3,nstart=20); 
+plot(x, col=(km.output$cluster+1), xlab="X", ylab="Y", pch=20, cex=2)
+title("K = 3", line = -2)
+```
+
+Okay.... I can see that being natural clusters. How about just 2 clusters?
+
+```{r}
+set.seed(4)
+km.output <- kmeans(x,2,nstart=20); 
+plot(x, col=(km.output$cluster+1), xlab="X", ylab="Y", pch=20, cex=2)
+title("K = 2", line = -2)
+```
+
+Okay, now that's how I would have partioned this data. Maybe a few outliers I might have placed in the other cluster, but this seems pretty natural. But does it really tell me anything?
+
+Ah... that's the question isn't it?
+
+Next... Digging Deeper
+==========================================
+ * Finding how to best pick the "k" value.  
+ 
+ * After that, bigger and better K type partiioning  
+ 
+  + clustering: K-Means++, K-Medoid, and more.  
+  + And what about this Euclidean distancing measurement. Why not a Manhattan measurement?  
+  
+ * And hows this work with more than 2 dimensions? 3? 4? 100? 1000? Can we visualize it?  
+ 
+ * What are other options for Unsupervised Machine Learning clustering?
+
+
+Documentation
+=======================================================
+ * "kmeans" in R is a program wrapped into a single function built into the R **stats** package.
+ 
+ * If you want to **see** the actual program, type in just "kmeans" in the R command line and hit enter. You can do this with lots of R fucntions.
+ 
+ * For docmentation and simple use of kmeans in R, type in "?kmeans" and enter. This is standard **help** for all R documentation
+   
+:  
+
+     
